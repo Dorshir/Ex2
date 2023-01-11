@@ -67,11 +67,6 @@ public class CustomExecutor<V>{
         return submitTask(t1);
     }
 
-
-    public int getCurrenctMax() {
-        return this.currentMax;
-    }
-
     /**
      * This method will shut down the thread-pool and wait for all the threads to finish their work
      */
@@ -86,22 +81,26 @@ public class CustomExecutor<V>{
         }
     }
 
+    public int getCurrenctMax() {
+        return this.currentMax;
+    }
     public int getCorePoolSize() {
         return corePoolSize;
     }
-
     public int getMaxPoolSize() {
         return maxPoolSize;
     }
-
     public int getCurrentMax() {
         return currentMax;
     }
-
     public static ThreadPoolExecutor getThreadpool() {
         return threadpool;
     }
 
+    /**
+     * This method sets a new value for corePoolSize iff the new value is less than maxPoolSize
+     * @param corePoolSize new corePoolSize value
+     */
     public void setCorePoolSize(int corePoolSize) {
         if (currentMax >= maxPoolSize)
         this.corePoolSize = corePoolSize;
