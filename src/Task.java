@@ -70,7 +70,11 @@ public class Task<V> extends FutureTask<V> implements Callable<V>, Comparable<Ta
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Task<?>)) return false;
-        if (((Task<V>) obj).priority == this.priority && callable.equals(((Task<V>)(obj)).callable)) {return true;}
+        try {
+            if (((Task<V>) obj).priority == this.priority && callable.call().equals(((Task<V>)(obj)).callable.call())) {return true;}
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         return  false;
     }
 

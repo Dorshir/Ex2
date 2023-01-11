@@ -4,9 +4,8 @@ public class CustomExecutor<V>{
     private static ThreadPoolExecutor threadpool;
     private int corePoolSize;
     private int maxPoolSize;
+    private PriorityBlockingQueue<Runnable> queue;
     private int currentMax;
-
-    private int newObject;
 
 
     /**
@@ -15,7 +14,7 @@ public class CustomExecutor<V>{
     public CustomExecutor() {
         corePoolSize = Runtime.getRuntime().availableProcessors()/2;
         maxPoolSize = Runtime.getRuntime().availableProcessors()-1;
-        PriorityBlockingQueue<Runnable> queue = new PriorityBlockingQueue<Runnable>();
+        queue = new PriorityBlockingQueue<Runnable>();
         threadpool = new ThreadPoolExecutor(corePoolSize, maxPoolSize,300L, TimeUnit.MILLISECONDS,queue){
 
             /**
@@ -73,26 +72,6 @@ public class CustomExecutor<V>{
         return this.currentMax;
     }
 
-    public int getCorePoolSize() {
-        return corePoolSize;
-    }
-
-    public void setCorePoolSize(int corePoolSize) {
-        this.corePoolSize = corePoolSize;
-    }
-
-    public int getMaxPoolSize() {
-        return maxPoolSize;
-    }
-
-    public void setMaxPoolSize(int maxPoolSize) {
-        this.maxPoolSize = maxPoolSize;
-    }
-
-    public int getCurrentMax() {
-        return currentMax;
-    }
-
     /**
      * This method will shut down the thread-pool and wait for all the threads to finish their work
      */
@@ -105,5 +84,26 @@ public class CustomExecutor<V>{
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    public int getCorePoolSize() {
+        return corePoolSize;
+    }
+
+    public int getMaxPoolSize() {
+        return maxPoolSize;
+    }
+
+    public int getCurrentMax() {
+        return currentMax;
+    }
+
+    public static ThreadPoolExecutor getThreadpool() {
+        return threadpool;
+    }
+
+    public void setCorePoolSize(int corePoolSize) {
+        if (currentMax >= maxPoolSize)
+        this.corePoolSize = corePoolSize;
     }
 }

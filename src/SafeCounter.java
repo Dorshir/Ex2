@@ -19,7 +19,7 @@ public class SafeCounter {
 
     /**
      * Counter value getter
-     * @return Value
+     * @return value
      */
     public int getValue() {
         return counter.get();

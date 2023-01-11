@@ -5,7 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc89b5a6-b6a4-4e24-a7c4-9644d7a44316" name="Changes" comment="last update">
+      <change afterPath="$PROJECT_DIR$/Tests/CustomExecutorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Ex2_1Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/TaskTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ex2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Ex2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Tests.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CustomExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Ex2_1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Ex2_1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SafeCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SafeCounter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Task.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,60 +70,61 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Tests (1)">
-    <configuration name="Ex2_1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Ex2_1" />
-      <module name="Ex2" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Tests (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.CustomExecutorTest.setCorePoolSize">
+    <configuration name="CustomExecutorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Ex2" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="CustomExecutorTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Ex2" />
-      <option name="PACKAGE_NAME" value="Tests" />
-      <option name="MAIN_CLASS_NAME" value="Tests.Tests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Tests.partialTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CustomExecutorTest.setCorePoolSize" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Ex2" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Tests" />
-      <option name="METHOD_NAME" value="partialTest" />
+      <option name="MAIN_CLASS_NAME" value="CustomExecutorTest" />
+      <option name="METHOD_NAME" value="setCorePoolSize" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
+    <configuration name="Ex2_1Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Ex2" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Ex2_1Test" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+    <configuration name="Ex2_1Test.getNumOfLinesThreadPool" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Ex2" />
-      <option name="filePath" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="Ex2_1Test" />
+      <option name="METHOD_NAME" value="getNumOfLinesThreadPool" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Ex2" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TaskTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Tests (1)" />
-        <item itemvalue="JUnit.Tests.partialTest" />
-        <item itemvalue="JUnit.Tests" />
+        <item itemvalue="JUnit.CustomExecutorTest.setCorePoolSize" />
+        <item itemvalue="JUnit.CustomExecutorTest" />
+        <item itemvalue="JUnit.TaskTest" />
+        <item itemvalue="JUnit.Ex2_1Test" />
+        <item itemvalue="JUnit.Ex2_1Test.getNumOfLinesThreadPool" />
       </list>
     </recent_temporary>
   </component>

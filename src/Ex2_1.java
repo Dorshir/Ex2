@@ -41,7 +41,7 @@ public class Ex2_1 {
      * @return Total number of lines
      */
     public static int getNumOfLines(String[] fileNames) {
-        long startTime = System.nanoTime();
+
         int lines = 0;
         for (String fileName : fileNames) {
             try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
@@ -50,8 +50,6 @@ public class Ex2_1 {
                 e.printStackTrace();
             }
         }
-        long endTime   = System.nanoTime();
-        System.out.println((endTime - startTime));
         return lines;
     }
 
@@ -63,12 +61,10 @@ public class Ex2_1 {
      */
     public static int getNumOfLinesThreads(String[] fileNames) {
 
-        long startTime = System.nanoTime();
         class LinesThread extends Thread {
             public int getLines() {
                 return lines;
             }
-
             private int lines = 0;
             private final String fileName;
 
@@ -81,7 +77,7 @@ public class Ex2_1 {
                 this.fileName = fileName;
             }
         }
-        SafeCounter linesCounter = new SafeCounter();
+        int lines = 0;
         LinesThread[] myThreads = new LinesThread[fileNames.length];
 
         for (int i = 0; i < fileNames.length; i++) {
@@ -91,14 +87,12 @@ public class Ex2_1 {
         for (LinesThread thread : myThreads) {
             try {
                 thread.join();
-                linesCounter.setValue(thread.getLines());
+                lines += (thread.getLines());
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
-        long endTime   = System.nanoTime();
-        System.out.println((endTime - startTime));
-        return linesCounter.getValue();
+        return lines;
     }
 
     /**
@@ -108,14 +102,14 @@ public class Ex2_1 {
      */
     public static int getNumOfLines(String fileName) {
 
-        SafeCounter linesCounter = new SafeCounter();
+        int lines = 0;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            while (reader.readLine() != null) linesCounter.increment();
+            while (reader.readLine() != null) lines++;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return linesCounter.getValue();
+        return lines;
     }
 
     /**
@@ -125,10 +119,11 @@ public class Ex2_1 {
      */
     public static int getNumOfLinesThreadPool(String[] fileNames) {
 
-        long startTime = System.nanoTime();
         SafeCounter linesCounter = new SafeCounter();
         ExecutorService threadPool = Executors.newFixedThreadPool(fileNames.length);
         Future<Integer>[] futures = new Future[fileNames.length];
+
+        int a = 0;
 
         for (int i = 0; i < fileNames.length; i++) {
             int finalI = i;
@@ -143,20 +138,6 @@ public class Ex2_1 {
             }
         }
         threadPool.shutdown();
-        long endTime   = System.nanoTime();
-        System.out.println((endTime - startTime));
         return linesCounter.getValue();
-    }
-
-
-    public static void main(String[] args) {
-        int seed = 1000, n = 1000, bound = 10000;
-        String[] st = createTextFiles(n,seed,bound);
-        System.out.println("Regular:");
-        System.out.println(getNumOfLines(st));
-        System.out.println("Threads:");
-        System.out.println(getNumOfLinesThreads(st));
-        System.out.println("TheadPool:");
-        System.out.println(getNumOfLinesThreadPool(st));
     }
 }
