@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CustomExecutorTest {
 
-
     @Test
     void submit() {
         CustomExecutor c1 = new CustomExecutor<>();
@@ -48,7 +47,6 @@ class CustomExecutorTest {
         assertEquals(c1.getThreadpool().getCompletedTaskCount(),1000);
     }
 
-
     @Test
     void setCorePoolSize() {
         CustomExecutor c1 = new CustomExecutor<>();
@@ -69,15 +67,23 @@ class CustomExecutorTest {
             }
             Thread.sleep(1000);
             return sum;
+        }, TaskType.IO);
+        Task<Integer> taskHighPriority = Task.createTask(() -> {
+            int sum = 0;
+            for (int i = 1; i <= 10; i++) {
+                sum += i;
+            }
+            Thread.sleep(1000);
+            return sum;
         }, TaskType.OTHER);
-        Future<Integer>[] sumTaskArray = new Future[1000];
+        Future<Integer>[] sumTaskArray = new Future[1001];
         for (int i = 0; i < 1000; i++) {
             sumTaskArray[i] = c1.submit(taskLowPriority);
         }
-        int[] sum = new int[1000];
+        sumTaskArray[1000] = c1.submit(taskHighPriority);
+        int[] sum = new int[1001];
         try {
-            int count = 0;
-            for (int i = 0; i < 1000; i++) {
+            for (int i = 0; i < 1001; i++) {
                 sum[i] = sumTaskArray[i].get();
             }
         } catch (InterruptedException | ExecutionException e) {
@@ -86,5 +92,6 @@ class CustomExecutorTest {
         c1.gracefullyTerminate();
         int currMax = c1.getCurrenctMax();
         assertEquals(0,currMax); //check after gracefullyTerminate() been use , the queue is empty(currMax = 0)
+        assertNull(c1.getThreadpool().getQueue().peek());
     }
 }

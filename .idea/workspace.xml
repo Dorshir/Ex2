@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc89b5a6-b6a4-4e24-a7c4-9644d7a44316" name="Changes" comment="final1">
+    <list default="true" id="bc89b5a6-b6a4-4e24-a7c4-9644d7a44316" name="Changes" comment="final2">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/CustomExecutorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/CustomExecutorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CustomExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/untitled/untitled.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,12 +62,22 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CustomExecutorTest.setCorePoolSize">
+  <component name="RunManager" selected="JUnit.CustomExecutorTest">
     <configuration name="CustomExecutorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Ex2" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CustomExecutorTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomExecutorTest.gracefullyTerminate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Ex2" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="CustomExecutorTest" />
+      <option name="METHOD_NAME" value="gracefullyTerminate" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -78,15 +88,6 @@
       <option name="MAIN_CLASS_NAME" value="CustomExecutorTest" />
       <option name="METHOD_NAME" value="setCorePoolSize" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Ex2_1Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Ex2" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Ex2_1Test" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -112,11 +113,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CustomExecutorTest.setCorePoolSize" />
         <item itemvalue="JUnit.CustomExecutorTest" />
-        <item itemvalue="JUnit.TaskTest" />
-        <item itemvalue="JUnit.Ex2_1Test" />
+        <item itemvalue="JUnit.CustomExecutorTest.gracefullyTerminate" />
         <item itemvalue="JUnit.Ex2_1Test.getNumOfLinesThreadPool" />
+        <item itemvalue="JUnit.CustomExecutorTest.setCorePoolSize" />
+        <item itemvalue="JUnit.TaskTest" />
       </list>
     </recent_temporary>
   </component>
@@ -151,7 +152,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1673455675033</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL‎-00004" summary="final2">
+      <created>1673456044081</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL‎-00004" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1673456044081</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,6 +180,7 @@
     <MESSAGE value="commit1" />
     <MESSAGE value="last update" />
     <MESSAGE value="final1" />
-    <option name="LAST_COMMIT_MESSAGE" value="final1" />
+    <MESSAGE value="final2" />
+    <option name="LAST_COMMIT_MESSAGE" value="final2" />
   </component>
 </project>
