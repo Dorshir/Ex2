@@ -1,53 +1,53 @@
-# OOP_Ex2
+# Ex2_OOP
 # Ex2_1
 
-In this section of the assigment we work with Threads,ThreadPoll,Regular case(only main Thread).
+In this section of the assignment we work with Threads,ThreadPool and Regular case(only main Thread).
 
-In each way of the above we will check how it collab with massive task as Files I/O , and calculate the time took to execute the task.
+In each way of the above we will check how it collab with massive task as Files I/O, and calculate the time taken to execute the task.
 
 ## Working with files
-Function ``createTextFiles(int n,int seed,int bound)`` will generate n files which will be filled with random num of lines. the line : "Hello World". This function return String array of files name.
+Function ``createTextFiles(int n,int seed,int bound)`` will generate n files which will be filled with a random number of lines with the string: "Hello World". This function return String array of files name.
 
 ### Regular case:
-Function : ``getNumOfLines(String[] fileNames)``
+Function: ``getNumOfLines(String[] fileNames)``
 
-In this function using only the main Thread , we go through each file one by one and add his num of lines to a total counter.
+In this function we are using only the main Thread. We go through each file one by one, count his lines and add his number of lines to a total counter.
 
 ### Thread case:
 Function: ``getNumOfLinesThreads(String[] fileNames)``
 
-In this function we read line numbers by using a thread for each file we read the files simultaneously.
+In this function we count the lines by using a new thread for each file. We read the files simultaneously.
 
-In order to do that we create Inner class 'LinesThread' which have a variable of ``lines`` that maintain for each file the amount of lines.
+In order to do that we create Inner class 'LinesThread' which have a variable of ``lines`` that maintain for each file the amount of lines it contains.
 
-Each file will get a thread by jvm , the thread will update the amount of ``lines`` and after he finish we will add the amount of lines he read to total counter.
+Each file will get a new thread by jvm, the thread will update the amount of ``lines`` and after he finish we will add the amount of lines he read to the total counter.
 
 ### ThreadPool case:
-Function :``getNumOfLinesThreadPool(String[] fileNames)``
+Function: ``getNumOfLinesThreadPool(String[] fileNames)``
 
-In this function we create threadPool using ExecutorService which responsible for creating threads that fullfil our task - reading lines from files.
+In this function we create a Thread-Pool using ExecutorService which responsible for creating threads that fullfil our task - reading and counting lines from files.
 
-In this function we read line numbers by injecting for each thread an synchronous task - ``callable`` type - this task will return us the amount of lines in each file.
+In this function we read line numbers by injecting for each thread a synchronous task - ``callable`` type - this task will return us the amount of lines in each file.
 
-Using ``SafeCounter`` an atomic integer we can insure the threads will be synchronized bettwen themselves who change the line counter , and only one thread at a time.
-By using ``setValue`` of ``SafeCounter`` we add the amount of each file lines to the total.
+Using ``SafeCounter`` holding an atomic integer, we can insure the threads will be synchronized between themselves who is updating the total line counter, only one thread at a time.
+By using ``setValue`` of ``SafeCounter`` we add the amount of each file lines to the total counter.
 
 ## Time Conclusions:
 For each case we check times and compare one case to another.
 
-By overall looking we can see ThreadPool is winning , than Threads case and at last is the regular case.
+By overall looking we can see Thread-Pool is winning, then Threads case and at last the regular case.
 
-*note*: we use around 1000 files and 500 lines in average to liken to heavy tasks.
+*note*: We use around 1000 files and 500 lines in average to liken to heavy tasks.
 
 This photo will reinforce our findings:
 
 ![WhatsApp Image 2023-01-11 at 19 16 55](https://user-images.githubusercontent.com/118991774/211874454-61e3e7ec-0c30-44d5-8907-061ef39088d2.jpeg)
 
-This result is match our expectations for those reasons : 
-- ThreadsPool and Threads case both using multiple execution paths and therfore there are much faster than regular case
-- ThreadsPool is faster than regular threads beacuse regular thread's life span shoter in compare to ThreadsPool. 
-ThreadPool is reusing threads that have already been created instead of creating new ones as made at regular threads case , which is expensive process.
-- threadpools often have mechanisms in place to manage and schedule the execution of tasks, which can also contribute to increased performance.
+This result is match our expectations for those reasons: 
+- Thread-Pool and Threads case both using multiple execution paths and therfore there are much faster than regular case
+- Thread-Pool is faster than regular threads beacuse regular thread's life span shoter in compare to Thread-Pool. 
+- Thread-Pool is reusing threads that have already been created instead of creating new ones as made at regular threads case, which is expensive process.
+- Thread-Pool often have mechanisms in place to manage and schedule the execution of tasks, which can also contribute to increased performance.
 
 
 ### UML diagram :
@@ -57,11 +57,11 @@ ThreadPool is reusing threads that have already been created instead of creating
 # Ex2_2
 Part2 of the assigment.
 
-In this part we will create our own ThreadPoolExecutor , which will bring to the ThreadPool new attribute:
+In this part we will create our own ThreadPoolExecutor, which will bring to the Thread-Pool new attribute:
 
-- The ability to priority mission.
+- The ability to priority missions.
 
-This will happen by a new kind of task that we create which contain asynchronous task - callable and priority Enum for the task.
+This will happen by a new kind of task that we create which contain an asynchronous task - callable and priority Enum for the task.
 
 Our ThreadPoolExecutor will determine the order of tasks to execute according priority number of each task.
 
@@ -70,19 +70,19 @@ Our ThreadPoolExecutor will determine the order of tasks to execute according pr
 ## Task
 
 ### Overall:
-Class that will maintain the idea of ``Callable`` of asynchronous task with generic return value , and will hold for each task his priority value.
+Class that will maintain the idea of ``Callable`` of asynchronous task with generic return value and will hold for each task his priority value.
 ##
 
 This class extends ``FutureTask<V>`` and implements ``Callable<V>, Comparable<Task<V>>``
 
-- We are implements from ``Callable`` interface cause we want to implement certain design 
+- We are implementing ``Callable`` interface cause we want to implement certain design 
  principles in our class - That our ``Task`` will be parrell to ``Callable`` as 
  asynchronous task with generic return value but also refurbish with a new attribute of 
  prriority Enum for each task.
 
-- We are use ``Comparable`` Interface to reuese certain behaviors in our code as adjusting the functinon ``CompareTo()`` to compare by value bettwen two ``Task`` objects.
+- We are implementing ``Comparable`` interface to reuse certain behaviors in our code as adjusting the functinon ``CompareTo()`` to compare by value bettwen two ``Task`` objects. and let the Thread-Pool PriorityBlockingQueue determine the tasks prioritization.
 
-- We extends FutureTask to inherit all of the functionality provided by FutureTask for managing the execution , important use in FutureTask is with ``RunnableFuture`` which is a Adapter desgin pattern. We extese about it in Desgian pattern in ``CustomExecutor`` section of explenation.
+- We extend FutureTask to inherit all of the functionality provided by FutureTask for managing the execution. Important use in FutureTask is with ``RunnableFuture`` which is an Adapter desgin pattern. We extese about it in Desgian pattern in ``CustomExecutor`` section of explenation.
 ## Paramters
 - Callable<V>: This is the ``Callable`` object that is being executed by the task. It represents the task that will be executed and it's of generic type V representing the type of the result that the task will produce.
 - TaskType: This is an enumeration that represents the priority of the task. The lower the value the more important the task.
@@ -136,15 +136,13 @@ This will allow to prioritize missions to accomplish.
 
 ### How to determine ``currentMax``
 ##
-We want to get the current Maximum priority in O(1) without approach the queue of ThreadPool. 
+We want to get the current Maximum priority in O(1) without approach the queue of the Thread-Pool.
+Therefore, when a new task execute we enter her num of priority to the priorityArray - happened at ``submitTask(Task<V> task)``.
+We remove a task from the priorityArray through ``beforeExecute()`` function. This function allow us to approach the Thread that assigned to execute the task, after he pulled the task from the queue and before executing it.
 
-Therefore , when a new task execute we enter her num of priorrity to the priorityArray - happened at ``submitTask(Task<V> task)``.
+Function ``beforeExecute()`` is calling ``setPriorityArray()`` and those all the above, the reason we call this function is to make the function synchronized due to the need that only one thread can decrease the value of one of the cell at each time.
 
-And we remove a task from the priorityArray through ``beforeExecute()`` function , this function allowed us to approach the Thread that assigned to execute the task , after he remove the task from the queue and still waiting before using ``call()`` to calculate her.
-
-Function ``beforeExecute()`` is calling ``setPriorityArray()`` and those all the above , the reason we call this function is to make the function synchronized due to the need that only one thread can decress the value of one of the cell at each time.
-
-***note** : the beforeExecute method assumes that the priority queue is correctly updated with the correct priority values of the tasks in the queue due to ``compareTo()``.*
+***note** : The beforeExecute method assumes that the priority queue is correctly updated with the correct priority values of the tasks in the queue due to ``compareTo()``.*
  
  ### Desgin patterns:
  ##
